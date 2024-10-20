@@ -38,9 +38,13 @@ export const Todolist = ({title, tasks, removeTasks, changeFilter}: PropsType) =
                 <li><input type="checkbox" checked={tasks[1].isDone}/> <span>{tasks[1].title}</span></li>
                 <li><input type="checkbox" checked={tasks[2].isDone}/> <span>{tasks[2].title}</span></li>*/}
             <div>
-                <Button title={'All'} onClick={() => changeFilter('all')}/>
+{/*                <Button title={'All'} onClick={() => changeFilter('all')}/>
                 <Button title={'Active'} onClick={() => changeFilter('active')}/>
-                <Button title={'Completed'} onClick={() => changeFilter('completed')}/>
+                <Button title={'Completed'} onClick={() => changeFilter('completed')}/>    */}
+
+                <button onClick={() => changeFilter('all')}>All</button>
+                <button onClick={() => changeFilter('active')}>Active</button>
+                <button onClick={() => changeFilter('completed')}>Completed</button>
             </div>
         </div>
     )

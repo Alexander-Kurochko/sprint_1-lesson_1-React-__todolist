@@ -1,6 +1,8 @@
+import {FilterValuesType} from '../App';
+
 type ButtonType = {
     title: string
-    onClick: () => void
+    onClick: (value: FilterValuesType) => void
 }
 
 export const Button = ({title} : ButtonType) => {
