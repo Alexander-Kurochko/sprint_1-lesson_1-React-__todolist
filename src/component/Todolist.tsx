@@ -3,16 +3,18 @@ import {FilterValuesType, TaskType} from '../App';
 import {Button} from './Button';
 
 type PropsType = {
+    id: string
     title: string
     tasks: TaskType[]
-    removeTasks: (id: string) => void
-    changeFilter: (value: FilterValuesType) => void
-    addTask: (title: string) => void
-    changeTasksStatus: (taskId: string, isDone: boolean) => void
+    removeTasks: (id: string, todolistId: string) => void
+    changeFilter: (value: FilterValuesType, todolistId: string) => void
+    addTask: (title: string, todolistId: string) => void
+    changeTasksStatus: (taskId: string, isDone: boolean, todolistId: string) => void
     filter: FilterValuesType
+    removeTodolistId: (todolistId: string) => void
 }
 
-export const Todolist = ({title, tasks, removeTasks, changeFilter, addTask, changeTasksStatus, filter}: PropsType) => {
+export const Todolist = ({title, tasks, removeTasks, changeFilter, addTask, changeTasksStatus, filter, id, removeTodolistId}: PropsType) => {
 
     const [newTaskTitel, setNewTaskTitel] = useState('')
     const [error, setError] = useState <string | null> (null)
@@ -25,34 +27,38 @@ export const Todolist = ({title, tasks, removeTasks, changeFilter, addTask, chan
         /*console.log(e)*/
         setError(null)
         if (e.code === 'Enter' && e.shiftKey && newTaskTitel.trim() !== '') {
-            addTask(newTaskTitel)
+            addTask(newTaskTitel, id)
             setNewTaskTitel('')
         }
     }
 
     const addTasks = () => {
         if (newTaskTitel.trim() !== '') {
-            addTask(newTaskTitel.trim())
+            addTask(newTaskTitel.trim(), id)
             setNewTaskTitel('')
         } else {
             setError('Title if required')
         }
     }
 
-    const onAllClickHandler = () => changeFilter('all')
-    const onActiveClickHandler = () => changeFilter('active')
-    const onCompletedClickHandler = () => changeFilter('completed')
+    const onAllClickHandler = () => changeFilter('all', id)
+    const onActiveClickHandler = () => changeFilter('active', id)
+    const onCompletedClickHandler = () => changeFilter('completed', id)
 
     const onRemoveTasksHandler = (id: string) => {
-        removeTasks(id)
+        removeTasks(id, id)
     }
     const onChangeHandler = (taskId: string, isDone: boolean) => {
-        changeTasksStatus(taskId, isDone)
+        changeTasksStatus(taskId, isDone, id)
+    }
+
+    const removeTodolist = () => {
+        removeTodolistId(id)
     }
 
     return (
         <div>
-            <h3>{title}</h3>
+            <h3>{title} <button onClick={removeTodolist}>x</button></h3>
             <div>
                 <input value={newTaskTitel}
                        onChange={onNewTitleChangeHandler}
