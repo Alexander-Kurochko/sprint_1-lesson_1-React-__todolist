@@ -40,8 +40,8 @@ export const todolistsReducer = (state: TodolistType[], action: ActionTypes): To
             }
 
             return [
-                ...state,
-                todolist
+                todolist,
+                ...state
             ]
         }
         case 'CHANGE-TODOLIST-TITLE': {
