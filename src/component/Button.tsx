@@ -1,4 +1,4 @@
-import {FilterValuesType} from '../App';
+import {FilterValuesType} from '../AppWithRedux';
 
 type ButtonType = {
     title: string

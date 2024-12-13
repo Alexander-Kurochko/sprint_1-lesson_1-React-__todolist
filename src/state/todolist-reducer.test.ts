@@ -1,7 +1,7 @@
 import {userReducer} from './user-reducer';
 import {v1} from 'uuid';
 import {useState} from 'react';
-import {FilterValuesType, TodolistType} from '../App';
+import {FilterValuesType, TodolistType} from '../AppWithRedux';
 import {
     addTodolistAC,
     changeTodolistFilterAC, changeTodolistTitleAC,
